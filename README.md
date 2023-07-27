@@ -1,2 +1,2 @@
-# code
-tutorial repository
+#자바 프로젝트
+싸피에서 했던 것들 업로드
