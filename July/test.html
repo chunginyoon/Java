@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/Desktop/favicon.ico" />
+    <script
+      src="https://kit.fontawesome.com/def66b134a.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>자기소개</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Hi+Melody&family=Pangolin&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Hi+Melody&family=Nanum+Gothic:wght@800&family=Pangolin&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Hi+Melody&family=Homemade+Apple&family=Nanum+Gothic:wght@800&family=Pangolin&display=swap");
+
+      /*상단 공백*/
+      * {
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .ul {
+        list-style: none;
+      }
+
+      /*상단 제목*/
+      .site-name {
+        font-family: "Pangolin", serif;
+        margin-left: 0;
+        text-align: center;
+        font-size: 50px;
+        height: 170px;
+        padding: 60px;
+      }
+      /*
+
+      .main-menu {
+        background-color: brown;
+      }
+      */
+
+      .main-menu > ul::after {
+        clear: left;
+      }
+
+      .main-menu-item {
+        font-family: "Gaegu", serif;
+        background-color: #f1f1f1;
+        border: none;
+        color: black;
+        padding: 30px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        width: 24%;
+      }
+
+      /*content 영역*/
+      .main {
+        background-color: #f1f1f1;
+        float: left;
+        width: 31%;
+      }
+
+      .aside {
+        font-family: "Nanum Gothic", serif;
+        font-size: 25px;
+        margin-top: 80px;
+        float: left;
+        width: 69%;
+        line-height: 400%;
+        padding-left: 100px;
+        padding-top: 5px;
+      }
+
+      .content {
+        height: 500px;
+      }
+
+      .main > section {
+        font-family: "Homemade Apple", serif;
+        font-size: 50px;
+        /*border: 1px solid black;*/
+        height: 50%;
+        /*margin: 20px;*/
+        margin-top: 50px;
+        padding: 20px;
+      }
+
+      .content-parent ::after {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="site-name">YOON JUNGIN</h1>
+      <nav class="main-menu">
+        <ul>
+          <button
+            class="main-menu-item"
+            onclick="window.location.href='https://blog.naver.com/liae100'"
+          >
+            📝BLOG
+          </button>
+          <button
+            class="main-menu-item"
+            onclick="window.location.href='https://www.youtube.com/results?search_query=%EA%B3%B5%EB%8C%80%EC%83%9D+%EB%B8%8C%EC%9D%B4%EB%A1%9C%EA%B7%B8'"
+          >
+            🎥YOUTUBE
+          </button>
+          <button
+            class="main-menu-item"
+            onclick="window.location.href='https://youtu.be/eJkiTMoygk0'"
+          >
+            🎻ORCHESTRA
+          </button>
+          <button
+            class="main-menu-item"
+            onclick="window.location.href='https://www.instagram.com/jiyxxn_/'"
+          >
+            📱INSTAGRAM
+          </button>
+        </ul>
+      </nav>
+      <hr style="border: 3px color= black" width="100%" />
+    </header>
+    <section class="content-parent">
+      <main class="content main">
+        <section>
+          <p>Introduce Myself</p>
+          <img src="사진.PNG" alt="My Image" />
+        </section>
+      </main>
+      <aside class="content aside">
+        😊윤정인<br />
+        💡 1999년생(만 24세)<br />
+        🏫 일산대진고등학교 졸업<br />
+        🏢 충북대학교 정보통신공학부 졸업 예정<br />
+        🎹 유튜브 운영, 여행, 캠핑<br />
+        📃 디스플레이 소자 실험실 인턴십, 소프트웨어 기업 인턴십, 오케스트라,
+        C언어 튜터
+      </aside>
+    </section>
+  </body>
+</html>
