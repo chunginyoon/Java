@@ -3,17 +3,18 @@ package test;
 import java.io.*;
 import java.util.*;
 
-public class Solution_1247_ÃÖÀû°æ·Î_À±Á¤ÀÎ {
+public class Solution_1247_ìµœì ê²½ë¡œ_ìœ¤ì •ì¸ {
 
 	static int N;
-	static int[] arr;
-	static boolean[] visit;
-	static int minDistance;
-	static int officeX;
+	static int[] arr; // ìˆœì—´ ì €ì¥í•  ë°°ì—´
+	static boolean[] visit; // ë°©ë¬¸ ì²´í¬
+	static int minDistance; // ìµœì†Œ ê±°ë¦¬
+
+	static int officeX; // íšŒì‚¬ì˜ X, Y ì¢Œí‘œ
 	static int officeY;
-	static int homeX;
+	static int homeX; // ì§‘ì˜ X, Y ì¢Œí‘œ
 	static int homeY;
-	static int[] clientX;
+	static int[] clientX; // ê³ ê°ì˜ X, Y ì¢Œí‘œ
 	static int[] clientY;
 
 	public static void main(String[] args) throws IOException {
@@ -23,6 +24,7 @@ public class Solution_1247_ÃÖÀû°æ·Î_À±Á¤ÀÎ {
 
 		for (int tc = 1; tc <= T; tc++) {
 
+			// ì…ë ¥
 			N = Integer.parseInt(br.readLine());
 			arr = new int[N];
 			visit = new boolean[N];
@@ -40,42 +42,43 @@ public class Solution_1247_ÃÖÀû°æ·Î_À±Á¤ÀÎ {
 				clientX[i] = Integer.parseInt(st.nextToken());
 				clientY[i] = Integer.parseInt(st.nextToken());
 			}
-			// ½ÇÇà
+			// ì‹¤í–‰
 			permutation(0);
 			System.out.printf("#%d %d\n", tc, minDistance);
 		}
 
 	}
 
-	private static int sumAbs(int x, int y) {
-		return Math.abs(x - y);
-	}
-
+	// ê³ ê° ìˆœì„œ ìˆœì—´ë¡œ íƒìƒ‰
 	private static void permutation(int depth) {
 
-		// Àç±ÍÇÔ¼ö ÁßÁöÇÏ°í °á°ú Ãâ·Â
+		// ì¬ê·€í•¨ìˆ˜ ì¤‘ì§€í•˜ê³  ê²°ê³¼ ì¶œë ¥
 		if (depth == N) {
-			int distance = sumAbs(officeX, clientX[arr[0]]) + sumAbs(officeY, clientY[arr[0]]);
+			// ì´ˆê¸°ê°’: íšŒì‚¬ì—ì„œ ì²« ë²ˆì§¸ ê³ ê°ê¹Œì§€ì˜ ê±°ë¦¬
+			int distance = Math.abs(officeX - clientX[arr[0]]) + Math.abs(officeY - clientY[arr[0]]);
 
+			// ê³ ê°ë¼ë¦¬ì˜ ê±°ë¦¬
 			for (int i = 1; i < N; i++)
-				distance += (sumAbs(clientX[arr[i]], clientX[arr[i - 1]])
-						+ sumAbs(clientY[arr[i]], clientY[arr[i - 1]]));
+				distance += (Math.abs(clientX[arr[i]] - clientX[arr[i - 1]])
+						+ Math.abs(clientY[arr[i]] - clientY[arr[i - 1]]));
 
-			distance += (sumAbs(homeX, clientX[arr[N - 1]]) + sumAbs(homeY, clientY[arr[N - 1]]));
+			// ë§ˆì§€ë§‰ ê³ ê°ê³¼ ì§‘ê¹Œì§€ì˜ ê±°ë¦¬
+			distance += (Math.abs(homeX - clientX[arr[N - 1]]) + Math.abs(homeY - clientY[arr[N - 1]]));
 
+			// ìµœì†Œê±°ë¦¬ ì°¾ê¸°
 			minDistance = Math.min(minDistance, distance);
 
 			return;
 		}
 
+		// ìˆœì—´
 		for (int i = 0; i < N; i++) {
 			if (!visit[i]) {
-				visit[i] = true; // ¹æ¹®
-				arr[depth] = i; // ¹æ¹®ÇÑ °ª ÀúÀå
-				permutation(depth + 1); // ÀÚ½Ä ³ëµå Å½»ö
-				visit[i] = false; // ¹æ¹® Ã¼Å© ÇØÁ¦
+				visit[i] = true; // ë°©ë¬¸
+				arr[depth] = i; // ë°©ë¬¸í•œ ê°’ ì €ì¥
+				permutation(depth + 1); // ìì‹ ë…¸ë“œ íƒìƒ‰
+				visit[i] = false; // ë°©ë¬¸ ì²´í¬ í•´ì œ
 			}
 		}
 	}
-
 }
