@@ -14,9 +14,9 @@ public class Solution_5215_햄버거다이어트_윤정인 {
 
 	static int N;
 	static int L;
-	static int[][] ingredient; //재료 맛 점수와 칼로리 저장
+	static int[][] ingredient; // 재료 맛 점수와 칼로리 저장
 	static boolean[] selected;
-	static int maxScore = 0; //최대 점수
+	static int maxScore = 0; // 최대 점수
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +26,7 @@ public class Solution_5215_햄버거다이어트_윤정인 {
 		for (int tc = 1; tc <= T; tc++) {
 			maxScore = 0;
 
-			//입력
+			// 입력
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
 			L = Integer.parseInt(st.nextToken());
@@ -39,23 +39,22 @@ public class Solution_5215_햄버거다이어트_윤정인 {
 				ingredient[i][1] = Integer.parseInt(st.nextToken()); // 칼로리
 			}
 
-			//실행
+			// 실행
 			powerSet(0);
-			
-			//출력
+
+			// 출력
 			System.out.printf("#%d %d\n", tc, maxScore);
 		}
 
 	}
 
-	
 	private static void powerSet(int idx) { // idx = 현재 선택한 원소의 인덱스
-		
+
 		if (idx == N) {
 			// 하나의 부분 집합 완성
 			int totalScore = 0;
 			int totalCal = 0;
-			
+
 			for (int i = 0; i < N; i++) {
 				if (selected[i]) {
 					int score = ingredient[i][0];
@@ -64,7 +63,7 @@ public class Solution_5215_햄버거다이어트_윤정인 {
 					totalCal += cal;
 				}
 			}
-			
+
 			if (totalCal <= L)
 				if (totalScore > maxScore)
 					maxScore = totalScore;
