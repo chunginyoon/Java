@@ -20,11 +20,11 @@ public class Combination {
 	public static void main(String[] args) {
 
 		
-		for(int i=0; i<N; i++) {//0¹øÂ° ÀÚ¸® ¼ýÀÚ »Ì±â
+		for(int i=0; i<N; i++) {//0ë²ˆì§¸ ìžë¦¬ ìˆ«ìž ë½‘ê¸°
 			
-			for(int j=i+1; j<N; j++) { //1¹øÂ° ÀÚ¸® ¼ýÀÚ »Ì±â
+			for(int j=i+1; j<N; j++) { //1ë²ˆì§¸ ìžë¦¬ ìˆ«ìž ë½‘ê¸°
 				
-				for(int k=j+1; k<N; k++) {	//2¹øÂ° ÀÚ¸® ¼ýÀÚ »Ì±â
+				for(int k=j+1; k<N; k++) {	//2ë²ˆì§¸ ìžë¦¬ ìˆ«ìž ë½‘ê¸°
 					
 					System.out.println(arr[i]+" "+arr[j]+" "+arr[k]);
 					
