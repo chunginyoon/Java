@@ -30,22 +30,22 @@ public class Combination_recursive {
 		
 	}
 	/**
-	 * ¼ıÀÚÇÏ³ª¸¦ »Ì°í ´ÙÀ½ ¼ıÀÚ »Ì±â´Â Àç±ÍÈ£Ãâ·Î ³Ñ±è
-	 * @param cnt ÇöÀç±îÁö »ÌÀº ¼ıÀÚÀÇ °³¼ö or »ÌÀº ¼ıÀÚ¸¦ ´ãÀ» ÀÎµ¦½º
+	 * ìˆ«ìí•˜ë‚˜ë¥¼ ë½‘ê³  ë‹¤ìŒ ìˆ«ì ë½‘ê¸°ëŠ” ì¬ê·€í˜¸ì¶œë¡œ ë„˜ê¹€
+	 * @param cnt í˜„ì¬ê¹Œì§€ ë½‘ì€ ìˆ«ìì˜ ê°œìˆ˜ or ë½‘ì€ ìˆ«ìë¥¼ ë‹´ì„ ì¸ë±ìŠ¤
 	 */
 	private static void combination(int cnt, int start) {
 		
 		if(cnt == R) {
-			//ÇÏ³ªÀÇ Á¶ÇÕÀ» ¿Ï¼º
+			//í•˜ë‚˜ì˜ ì¡°í•©ì„ ì™„ì„±
 			
-			//»ç¿ë
+			//ì‚¬ìš©
 			System.out.println(Arrays.toString(picked));
 			return;
 		}
 		
 		for(int i=start; i<N; i++) {
-			picked[cnt] = arr[i];	//¼ıÀÚ »Ì±â
-			combination(cnt+1, i+1);	//´ÙÀ½ ¼ıÀÚ »Ì±â´Â Àç±Í·Î ³Ñ±è
+			picked[cnt] = arr[i];	//ìˆ«ì ë½‘ê¸°
+			combination(cnt+1, i+1);	//ë‹¤ìŒ ìˆ«ì ë½‘ê¸°ëŠ” ì¬ê·€ë¡œ ë„˜ê¹€
 		}
 		
 	}
