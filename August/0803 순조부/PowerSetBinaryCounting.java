@@ -8,11 +8,11 @@ public class PowerSetBinaryCounting {
 	public static void main(String[] args) {
 
 //		for(int flag = 0; flag <= Math.pow(2,  N)-1; flag++)
-		//flag : °¢ ºÎºÐÁýÇÕÀÇ Á¤º¸
+		//flag : ê° ë¶€ë¶„ì§‘í•©ì˜ ì •ë³´
 		for (int flag = 0; flag < 1 << N; flag++) {
 			System.out.printf("%5s\n", Integer.toBinaryString(flag));
 
-			// i¹øÂ° ¿ä¼Ò°¡ ¼±ÅÃµÆ´ÂÁö
+			// ië²ˆì§¸ ìš”ì†Œê°€ ì„ íƒëëŠ”ì§€
 			for (int i = 0; i < N; i++)
 				if ((flag & 1<<i) > 0)
 					System.out.print(arr[i]);
