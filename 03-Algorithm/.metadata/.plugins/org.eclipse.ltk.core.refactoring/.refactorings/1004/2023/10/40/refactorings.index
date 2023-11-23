@@ -1,0 +1,10 @@
+1696474165004	Rename field 'dp'
+1696474223178	Rename method 'setDP'
+1696481621613	Rename method 'findDistance'
+1696485026546	Rename local variable 'x'
+1696485030050	Rename local variable 'y'
+1696489916750	Rename type 'Pos'
+1696489968244	Rename local variable 'pos'
+1696492179860	Rename local variable 'node'
+1696492352823	Rename type 'SWEA_1249_보급로_윤정인'
+1696492462209	Move compilation unit

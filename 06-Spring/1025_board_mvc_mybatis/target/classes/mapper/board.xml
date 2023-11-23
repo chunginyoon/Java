@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.mapper.BoardMapper">
+
+	<!-- 전체 조회 -->
+	<select id="selectAll" resultType="product">
+		select *
+		from product
+	</select>
+
+	<!-- 상세 조회 -->
+	<select id="selectByCode" resultType="product">
+		select *
+		from product
+		where code=#{code}
+		<!-- 괄호 안에는 getter 함수의 이름 -->
+	</select>
+
+	<!-- 등록 -->
+	<insert id="regist" parameterType="product">
+		insert into product(code, model, price)
+		values(#{code}, #{model}, #{price})
+	</insert>
+
+	<!-- 삭제 -->
+	<delete id="deleteByCode" parameterType="String">
+		delete from product
+		where code=#{code}
+	</delete>
+</mapper>

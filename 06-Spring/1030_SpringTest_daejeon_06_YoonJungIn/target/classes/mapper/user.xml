@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.mapper.UserMapper">
+
+	<resultMap type="UserInfo" id="UserInfo">
+
+		<result property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="position" column="position" />
+		<result property="userNumber" column="usernumber" />
+		<result property="name" column="name" />
+		<result property="rname" column="rname" />
+		<result property="rclass" column="rclass" />
+
+		<!-- 1:N 관계 -->
+		<collection property="attendance" javaType="list"
+			ofType="Attendance" resultMap="Attendance"></collection>
+		<!-- 변수 이름, 객체 타입, 참조 -->
+
+	</resultMap>
+	
+	<resultMap type="Attendance" id="Attendance">
+		<id property="ano" column="ano" />
+		<result property="userNumber" column="usernumber" />
+		<result property="issueDate" column="issuedate" />
+		<result property="issue" column="issue" />
+	</resultMap>
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="UserInfo"
+		resultType="UserInfo">
+		select id, position, usernumber, name, rname, rclass
+		from userinfo
+		where id=#{id} and pw=#{pw}
+		<!-- 괄호 안에는 getter 함수의 이름 -->
+	</select>
+
+	<!-- 등록 -->
+	<insert id="regist" parameterType="attendance">
+		insert into attendance(ano,
+		usernumber, issueDate, issue)
+		values(#{ano}, #{userNumber},
+		#{issueDate}, #{issue})
+	</insert>
+
+	<!-- 전체 조회 (1:N관계) -->
+	<select id="selectAll" resultMap="UserInfo">
+		select B.ano, B.usernumber,
+		A.name, A.rclass, A.rname,B.issuedate, B.issue
+		from userinfo A inner join attendance B
+		ON A.usernumber = B.usernumber;
+	</select>
+	
+	<!-- 상세 조회 -->
+	<select id="selectByAno" resultMap="Attendance">
+		select ano, usernumber, issuedate, issue
+		from attendance
+		where ano=#{ano};
+		<!-- 괄호 안에는 getter 함수의 이름 -->
+	</select>
+
+</mapper>

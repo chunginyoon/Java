@@ -1,0 +1,104 @@
+
+import java.io.*;
+import java.util.*;
+/*
+ * 
+ */
+
+public class Main_BJ_말이되고픈원숭이_윤정인 {
+
+	static class Pos {
+		int x;
+		int y;
+		int horseJump;
+		int cnt;
+
+		Pos(int x, int y, int horseJump, int cnt) {
+			this.x = x;
+			this.y = y;
+			this.horseJump = horseJump;
+			this.cnt = cnt;
+		}
+	}
+
+	static int[][] map;
+	static boolean[][][] visited;
+	static int W, H;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int K = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		W = Integer.parseInt(st.nextToken());
+		H = Integer.parseInt(st.nextToken());
+
+		map = new int[H][W];
+		visited = new boolean[H][W][K + 1];
+
+		for (int i = 0; i < H; i++) {
+			st = new StringTokenizer(br.readLine());
+
+			for (int j = 0; j < W; j++)
+				map[i][j] = Integer.parseInt(st.nextToken());
+		}
+
+		System.out.print(bfs(0, 0, K));
+	}
+
+	private static int bfs(int x, int y, int K) {
+
+		int[][] delta = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+		int[][] horse = { { -1, -2 }, { -2, -1 }, { -2, 1 }, { -1, 2 }, { 1, -2 }, { 2, -1 }, { 1, 2 }, { 2, 1 } };
+
+		Queue<Pos> pos = new ArrayDeque<>();
+
+		pos.offer(new Pos(x, y, 0, 0));
+		visited[x][y][0] = true;
+
+		while (!pos.isEmpty()) {
+			Pos p = pos.poll();
+
+			int r = p.x;
+			int c = p.y;
+
+			if (r == H - 1 && c == W - 1)
+				return p.cnt;
+
+			for (int d = 0; d < 4; d++) {
+				int nr = r + delta[d][0];
+				int nc = c + delta[d][1];
+
+				if (nr < 0 || nr >= H || nc < 0 || nc >= W)
+					continue;
+				if (visited[nr][nc][p.horseJump])
+					continue;
+
+				if (map[nr][nc] == 0) {
+					visited[nr][nc][p.horseJump] = true;
+					pos.offer(new Pos(nr, nc, p.horseJump, p.cnt + 1));
+				}
+
+			}
+
+			if (p.horseJump < K) {
+				for (int h = 0; h < 8; h++) {
+					int nr = r + horse[h][0];
+					int nc = c + horse[h][1];
+
+					if (nr < 0 || nr >= H || nc < 0 || nc >= W)
+						continue;
+					if (visited[nr][nc][p.horseJump + 1])
+						continue;
+
+					if (map[nr][nc] == 0) {
+						visited[nr][nc][p.horseJump] = true;
+						pos.offer(new Pos(nr, nc, p.horseJump + 1, p.cnt + 1));
+					}
+
+				}
+			}
+
+		}
+		return -1;
+	}
+}

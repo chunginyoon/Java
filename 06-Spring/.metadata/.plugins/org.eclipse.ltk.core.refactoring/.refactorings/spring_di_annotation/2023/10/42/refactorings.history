@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;dataSource&apos; in &apos;com.ssafy.board.model.dao.BoardDaoImpl&apos; to &apos;dbUtil&apos;&#x0D;&#x0A;- Original project: &apos;spring_di_annotation&apos;&#x0D;&#x0A;- Original element: &apos;com.ssafy.board.model.dao.BoardDaoImpl.dataSource&apos;&#x0D;&#x0A;- Renamed element: &apos;com.ssafy.board.model.dao.BoardDaoImpl.dbUtil&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;dataSource&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ssafy.board.model.dao{BoardDaoImpl.java[BoardDaoImpl^dataSource" name="dbUtil" references="true" setter="false" stamp="1697607612633" textual="false" version="1.0"/>
+</session>

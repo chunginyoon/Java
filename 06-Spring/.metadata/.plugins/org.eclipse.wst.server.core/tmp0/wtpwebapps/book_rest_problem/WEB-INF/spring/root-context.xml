@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:component-scan
+		base-package="com.ssafy.ws.model,com.ssafy.ws.util,com.ssafy.ws.aop" />
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- DataSource 설정 -->
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/wsdb"></property>
+		<property name="username" value="ssafy"></property>
+		<property name="password" value="ssafy"></property>
+	</bean>
+
+
+	<!-- myBatis 사용 (Mapper 인터페이스 사용 버전) -->
+	<!-- 1. SqlSessionFactoryBean 빈 등록 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- DataSource -->
+		<property name="dataSource" ref="ds"></property>
+		<!-- mapper.xml 위치 정보 -->
+		<property name="mapperLocations"
+			value="classpath:mapper/**/*.xml"></property>
+		<!-- typeAlias -->
+		<property name="typeAliasesPackage" value="com.ssafy.ws.dto"></property>
+	</bean>
+	<!-- 2. Mapper 인터페이스 빈 등록 -->
+	<mybatis-spring:scan
+		base-package="com.ssafy.ws.model.mapper" />
+
+	<!-- 트랜잭션 설정 -->
+	<!-- 1.트랜잭션 매니저 빈 등록 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<constructor-arg ref="ds"></constructor-arg>
+	</bean>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+</beans>

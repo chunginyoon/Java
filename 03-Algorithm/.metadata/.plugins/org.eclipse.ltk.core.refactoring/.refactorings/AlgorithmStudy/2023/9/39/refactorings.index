@@ -1,0 +1,7 @@
+1695631346608	Rename local variable 'abs'
+1695782376108	Rename field 'adjMatrix'
+1695794945175	Rename local variable 'sum'
+1695796810159	Rename field 'isConnected'
+1695796818658	Rename local variable 'cnt'
+1695796896329	Rename method 'makeAdjList'
+1695797039624	Rename method 'share'

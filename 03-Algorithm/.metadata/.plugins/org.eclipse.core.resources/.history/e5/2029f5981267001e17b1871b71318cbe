@@ -1,0 +1,11 @@
+package SamsungSW;
+
+import java.io.*;
+import java.util.*;
+
+public class Main_BJ_20058_마법사상어와파이어스톰 {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	}
+}

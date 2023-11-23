@@ -1,0 +1,25 @@
+package com.ssafy.car.model.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.ssafy.car.dto.Car;
+
+public interface CarService {
+	/**
+	 * 전체 조회
+	 */
+	List<Car> selectAll() throws SQLException;
+
+	/**
+	 * 상세 조회
+	 */
+	Car selectByCarNo(int carNo) throws SQLException;
+
+	/**
+	 * 자동차 등록
+	 */
+	int registCar(Car car) throws SQLException;
+
+	int deleteCar(int carNo) throws SQLException;
+}

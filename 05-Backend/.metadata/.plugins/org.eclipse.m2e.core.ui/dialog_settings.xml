@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="test5"/>
+			<item value="board5_el_jstl"/>
+			<item value="country_cookie_session"/>
+			<item value="board4_cookie_session"/>
+			<item value="country_mvc"/>
+			<item value="Country"/>
+			<item value="0919_실습_country_mvc"/>
+			<item value="board3_mvc"/>
+			<item value="WhereismyHome"/>
+			<item value="board_jdbc"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="test5"/>
+			<item value="board5_el_jstl"/>
+			<item value="country_cookie_session"/>
+			<item value="board4_cookie_session"/>
+			<item value="country_mvc"/>
+			<item value="0919_실습_country_mvc"/>
+			<item value="board3_mvc"/>
+			<item value="Country"/>
+			<item value="WhereismyHome"/>
+			<item value="board_jdbc"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

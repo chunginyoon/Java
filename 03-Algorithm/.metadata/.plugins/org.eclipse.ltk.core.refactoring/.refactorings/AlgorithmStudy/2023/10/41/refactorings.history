@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;AlgorithmStudy&apos;&#x0D;&#x0A;- Original project: &apos;AlgorithmStudy&apos;&#x0D;&#x0A;- Original element: &apos;SamsungSW.Main_BJ_20058_마법사상어와파이어스톰.java&apos;" description="Delete element" element1="/src&lt;SamsungSW{Main_BJ_20058_마법사상어와파이어스톰.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1696904006845" subPackages="false" version="1.0"/>
+</session>

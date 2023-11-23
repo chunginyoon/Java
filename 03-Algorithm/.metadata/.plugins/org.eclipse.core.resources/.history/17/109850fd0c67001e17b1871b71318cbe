@@ -1,0 +1,175 @@
+package SamsungSW;
+
+import java.io.*;
+import java.util.*;
+
+/*
+ * 토네이도가 동서남북 중 한 방향으로 len 만큼 이동하고, 이동 방향을 시계 반시계 방향으로 바꾼다
+ * 	=> dir = (dir+1)%4
+ * 이동방향이 서쪽이나 동쪽(d=0 or d=2)이 되면 len 1 증가
+ * (0,0)에 도착하면 이동 종료
+ * 
+ * 
+ * <문제 해결 프로세스>
+ * 이동방향 dir을 정하고, dir = 0 or dir=2 이면 len를 1 증가시킨다
+ * dir 방향으로 delta 탐색을 통해 len 만큼 이동한다
+ * 한 칸씩 이동할 때마다 이동 완료한 칸  (r, c)기준으로 모래를 보낼 칸을 탐색한다
+ * map[r][c]이 0이 아닐 때
+ * 	 d= 1~9
+ *   - 이동 방향이 서쪽이면 nr = r+dr[d], nc=c+dc[d]
+ *   - 이동 방향이 동쪽이면 nr = r+dr[d], nc=c-dc[d]
+ *   - 이동 방향이 남쪽이면 nr = r-dc[d], nc=c-dr[d]
+ *   - 이동 방향이 북쪽이면 nr = r+dc[d], nc=c+dr[d]
+ *  1. 경계 값을 벗어나면 outside에 더한다
+ *  2. 경계 값을 벗어나지 않으면 map[nr][nc]에 더한다
+ *   d=1~9까지 옮긴 모래의 합 sum을 구해서 map[r][c]-sum = alpha 칸(d=0)의 모래
+ * 
+ */
+
+public class Main_BJ_20057_마법사상어와토네이도 {
+
+	static int N;
+	static int outside = 0;
+	static int[][] map;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		N = Integer.parseInt(br.readLine());
+		map = new int[N][N];
+
+		for (int i = 0; i < N; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+
+			for (int j = 0; j < N; j++)
+				map[i][j] = Integer.parseInt(st.nextToken());
+		}
+
+		int r = N / 2; // 초기 좌표
+		int c = N / 2;
+		int dir = 0; // dir=0~3 서남동북 반시계 방향
+		int len = 1;
+		int[][] delta = new int[][] { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
+
+		while (r != 0 || c != 0) { // 원점에 도착하기 전까지 실행
+
+			// 토네이도가 동서남북 중 한 방향으로 len 만큼 이동
+			for (int i = 0; i < len; i++) {
+				// 한 칸씩 이동할 때마다 이동 완료한 칸 (r, c)기준으로 모래를 보낼 칸을 탐색한다
+				r += delta[dir][0];
+				c += delta[dir][1];
+
+				// 모래 뿌리기
+				if (map[r][c] != 0)
+					sand(dir, r, c);
+
+				if (r == 0 && c == 0) // (0,0)에 도착하면 이동 종료
+					break;
+			}
+			// 이동 방향을 시계 반시계 방향으로 바꾼다
+			dir = (dir + 1) % 4;
+
+			// 이동방향이 서쪽이나 동쪽이 되면 len 1 증가
+			if (dir == 0 || dir == 2)
+				len++;
+		}
+		System.out.print(outside);
+	}
+
+	private static void sand(int dir, int r, int c) {
+
+		int[] dr = new int[] { 0, 0, -1, -1, -1, -2, 1, 1, 1, 2 };
+		int[] dc = new int[] { -1, -2, -1, 0, 1, 0, -1, 0, 1, 0 };
+		double[] ratio = new double[] { 0, 0.05, 0.1, 0.07, 0.01, 0.02, 0.1, 0.07, 0.01, 0.02 };
+
+		int sum = 0;
+
+		for (int d = 9; d >= 0; d--) { // d=1~9는 비율이 있는 칸, d=0인 칸은 alpha(이동 시키고 남은 모래의 양)칸이다
+
+			if (dir == 0) { // 이동 방향이 서쪽이면 nr = r+dr[d], nc=c+dc[d]
+				int nr = r + dr[d]; // 모래를 이동시킬 좌표
+				int nc = c + dc[d];
+
+				if (d > 0) { // 2. 경계 값을 벗어나지 않으면 map[nr][nc]에 더한다
+
+					if (nr < 0 || nr >= N || nc < 0 || nc >= N) { // 1. 경계 값을 벗어나면 outside에 더한다
+						outside += map[r][c] * ratio[d];
+						sum += (int) map[r][c] * ratio[d];
+					}
+
+					else {
+						map[nr][nc] += map[r][c] * ratio[d];
+						sum += map[r][c] * ratio[d];
+					}
+				}
+
+				else { // d=1~9까지 옮긴 모래의 합 sum을 구해서 alpha칸(d=0)의 모래 += (map[r][c]-sum)
+					map[nr][nc] += (map[r][c] - sum);
+					map[r][c] = 0; // 모래 이동 전부 완료
+				}
+			}
+
+			else if (dir == 1) { // 이동 방향이 남쪽이면 nr = r-dc[d], nc=c+dr[d]
+				int nr = r - dc[d]; // 모래를 이동시킬 좌표
+				int nc = c + dr[d];
+
+				if (nr < 0 || nr >= N || nc < 0 || nc >= N) { // 1. 경계 값을 벗어나면 outside에 더한다
+					outside += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+					continue;
+				}
+
+				if (d > 0) { // 2. 경계 값을 벗어나지 않으면 map[nr][nc]에 더한다
+					map[nr][nc] += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+				}
+
+				else { // d=1~9까지 옮긴 모래의 합 sum을 구해서 alpha칸(d=0)의 모래 += (map[r][c]-sum)
+					map[nr][nc] += (map[r][c] - sum);
+					map[r][c] = 0; // 모래 이동 전부 완료
+				}
+			}
+
+			else if (dir == 2) { // 이동 방향이 동쪽이면 nr = r+dr[d], nc=c-dc[d]
+				int nr = r + dr[d]; // 모래를 이동시킬 좌표
+				int nc = c - dc[d];
+
+				if (nr < 0 || nr >= N || nc < 0 || nc >= N) { // 1. 경계 값을 벗어나면 outside에 더한다
+					outside += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+					continue;
+				}
+
+				if (d > 0) { // 2. 경계 값을 벗어나지 않으면 map[nr][nc]에 더한다
+					map[nr][nc] += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+				}
+
+				else { // d=1~9까지 옮긴 모래의 합 sum을 구해서 alpha칸(d=0)의 모래 += (map[r][c]-sum)
+					map[nr][nc] += (map[r][c] - sum);
+					map[r][c] = 0; // 모래 이동 전부 완료
+				}
+			}
+
+			else { // 이동 방향이 북쪽이면 nr = r+dc[d], nc=c+dr[d]
+				int nr = r + dc[d]; // 모래를 이동시킬 좌표
+				int nc = c + dr[d];
+
+				if (nr < 0 || nr >= N || nc < 0 || nc >= N) { // 1. 경계 값을 벗어나면 outside에 더한다
+					outside += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+					continue;
+				}
+
+				if (d > 0) { // 2. 경계 값을 벗어나지 않으면 map[nr][nc]에 더한다
+					map[nr][nc] += map[r][c] * ratio[d];
+					sum += map[r][c] * ratio[d];
+				}
+
+				else { // d=1~9까지 옮긴 모래의 합 sum을 구해서 alpha칸(d=0)의 모래 += (map[r][c]-sum)
+					map[nr][nc] += (map[r][c] - sum);
+					map[r][c] = 0; // 모래 이동 전부 완료
+				}
+			}
+		}
+	}
+}

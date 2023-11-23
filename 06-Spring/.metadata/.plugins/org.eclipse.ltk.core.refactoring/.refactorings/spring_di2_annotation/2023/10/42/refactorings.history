@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;applicationContext.xml&apos; to &apos;spring_di_xml/src/com.ssafy&apos;&#x0D;&#x0A;- Original project: &apos;spring_di2_annotation&apos;&#x0D;&#x0A;- Destination element: &apos;spring_di_xml/src/com.ssafy&apos;&#x0D;&#x0A;- Original element: &apos;applicationContext.xml&apos;" description="Copy file" destination="=spring_di_xml/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ssafy" element1="src/com/ssafy/configuration/applicationContext.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1697608304287" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.board.model.mapper.CarMapper">
+
+	<resultMap type="car" id="car">
+		<result column="car_no" property="carNo"/>
+		<result column="number" property="number"/>
+		<result column="model" property="model"/>
+		<result column="price" property="price"/>
+		<result column="brand" property="brand"/>
+	</resultMap>
+	
+	<!-- 전체 조회 -->
+	<select id="selectAll" resultMap="car">
+	select car_no, number, model, price, brand
+	from car;
+	</select>
+	
+	<!-- 상세 조회 --> 
+	<select id="selectByCarNo" resultMap="car">
+	select car_no, number, model, price, brand
+	from car
+	where car_no=#{carNo};
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="regist" parameterType="car">
+	insert into car(number, model, price, brand)
+	values(#{number}, #{model}, #{price}, #{brand})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="modify" parameterType="car">
+		update car
+		set number=#{number}, model=#{model}, price=#{price}, brand = #{brand}
+		where car_no = #{carNo}
+	</update>
+	
+	<!-- 삭제 -->	
+	<delete id="delete" parameterType="int">
+		delete from car
+		where article_no = #{carNo}
+	</delete>
+</mapper>

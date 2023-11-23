@@ -1,0 +1,161 @@
+package com.ssafy.board.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ssafy.board.model.BoardDto;
+import com.ssafy.jdbc.Country;
+import com.ssafy.util.DBUtil;
+
+public class BoardDaoImpl implements BoardDao {
+
+	private static BoardDao boardDao = new BoardDaoImpl();
+
+	private BoardDaoImpl() {
+	}
+
+	public static BoardDao getBoardDao() {
+		return boardDao;
+	}
+
+	private DBUtil dbUtil = DBUtil.getInstance();
+
+	@Override
+	public void registerArticle(BoardDto boardDto) throws SQLException {
+		String sql = "insert into BoardDto\n" + "(articleNo, subject, content, userId, registerTime)\n" + "values\n"
+				+ "(?, ?, ?, ?, ?)";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = dbUtil.getConnection();
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardDto.getArticleNo());
+			pstmt.setString(2, boardDto.getSubject());
+			pstmt.setString(3, boardDto.getContent());
+			pstmt.setString(4, boardDto.getUserId());
+			pstmt.setString(5, boardDto.getRegisterTime());
+
+		} finally {
+			dbUtil.close(pstmt, conn);
+		}
+	}
+
+	@Override
+	public List<BoardDto> searchListAll() throws SQLException {
+		List<BoardDto> list = new ArrayList<BoardDto>();
+
+		String sql = "select*\n" + "from BoardDto;";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = dbUtil.getConnection();
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int articleNo = rs.getInt("articleNo");
+				String subject = rs.getString("subject");
+				String content = rs.getString("content");
+				String userId = rs.getString("userId");
+				String registerTime = rs.getString("registerTime");
+
+				BoardDto boardDto = new BoardDto(articleNo, subject, content, userId, registerTime);
+				list.add(boardDto);
+			}
+			return list;
+		} finally {
+			dbUtil.close(rs, pstmt, conn);
+		}
+	}
+
+	@Override
+	public List<BoardDto> searchListBySubject(String subject) throws SQLException {
+		List<BoardDto> list = new ArrayList<BoardDto>();
+
+		String sql = "select*\n" + "from BoardDto\n" + "where subject = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = dbUtil.getConnection();
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int articleNo = rs.getInt("articleNo");
+				String content = rs.getString("content");
+				String userId = rs.getString("userId");
+				String registerTime = rs.getString("registerTime");
+
+				BoardDto boardDto = new BoardDto(articleNo, subject, content, userId, registerTime);
+				list.add(boardDto);
+			}
+			return list;
+		} finally {
+			dbUtil.close(rs, pstmt, conn);
+		}
+	}
+
+	@Override
+	public BoardDto viewArticle(int no) throws SQLException {
+		BoardDto boardDto = null;
+
+		String sql = "select*\n" + "from BoardDto\n" + "where articleNo = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = dbUtil.getConnection();
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String subject = rs.getString("subject");
+				String content = rs.getString("content");
+				String userId = rs.getString("userId");
+				String registerTime = rs.getString("registerTime");
+
+				boardDto = new BoardDto(no, subject, content, userId, registerTime);
+				return boardDto;
+			}
+		} finally {
+			dbUtil.close(rs, pstmt, conn);
+		}
+	}
+
+	@Override
+	public void modifyArticle(BoardDto boardDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+//		TODO : boardDto의 내용을 이용하여 글번호에 해당하는 글제목과 내용을 수정하세요!!!
+
+//		END
+	}
+
+	@Override
+	public void deleteArticle(int no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+//		TODO : board table에서 글번호가 no인 글 정보를 삭제하세요!!!
+
+//		END
+	}
+
+}

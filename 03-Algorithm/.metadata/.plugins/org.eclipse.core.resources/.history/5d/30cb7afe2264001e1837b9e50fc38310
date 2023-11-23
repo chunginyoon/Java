@@ -1,0 +1,10 @@
+package SamsungSW;
+
+public class Main_BJ_주사위굴리기 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

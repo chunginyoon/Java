@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+
+public class Main_BJ_4485_녹색옷입은애가젤다지_윤정인 {
+	
+	static int[][]map;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		while (true) {
+			int N = Integer.parseInt(br.readLine());
+
+			if (N == 0)
+				break;
+
+			map = new int[N][N];
+		}
+	}
+
+}

@@ -1,0 +1,78 @@
+import java.io.*;
+import java.util.*;
+
+public class SWEA_1249_보급로_윤정인 {
+
+	static class Pos {
+		int r;
+		int c;
+
+		Pos(int r, int c) {
+			this.r = r;
+			this.c = c;
+		}
+	}
+
+	static int[][] map;
+	static int[][] distance;
+	static int N;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		int T = Integer.parseInt(br.readLine());
+
+		for (int tc = 1; tc <= T; tc++) {
+			N = Integer.parseInt(br.readLine());
+			map = new int[N][N];
+			distance = new int[N][N];
+
+			for (int i = 0; i < N; i++) {
+				String str = br.readLine();
+				for (int j = 0; j < N; j++)
+					map[i][j] = str.charAt(j) - '0';
+			}
+
+			for (int i = 0; i < N; i++)
+				Arrays.fill(distance[i], Integer.MAX_VALUE);
+			distance[0][0] = 0;
+
+			sb.append("#" + tc).append(" " + distance[N - 1][N - 1]).append('\n');
+		}
+
+		System.out.print(sb);
+	}
+
+	private static void findRoute() {
+
+		int[][] delta = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+		boolean[][] visited = new boolean[N][N];
+		PriorityQueue<Pos> pos = new PriorityQueue<>((x, y) -> x.weight - y.weight);
+
+		pos.offer(new Pos(0, 0));
+
+		while (!pos.isEmpty()) {
+
+			Pos p = pos.poll();
+
+			int r = p.r;
+			int c = p.c;
+
+			visited[r][c] = true;
+
+			if (r == N - 1 && c == N - 1)
+				break;
+
+			for (int d = 0; d < 4; d++) {
+				int nr = r + delta[d][0];
+				int nc = c + delta[d][1];
+
+				if (nr < 0 || nr >= N || nc < 0 || nc >= N)
+					continue;
+
+				if (visited[nr][nc])
+					continue;
+			}
+		}
+	}
+}

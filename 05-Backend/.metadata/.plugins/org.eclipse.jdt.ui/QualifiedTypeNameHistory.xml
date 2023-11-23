@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="com.ssafy.board.util.DBUtil"/>
+<fullyQualifiedTypeName name="com.ssafy.board.model.dao.BoardDao"/>
+<fullyQualifiedTypeName name="com.ssafy.board.BoardDto"/>
+<fullyQualifiedTypeName name="com.ssafy.happyhouse.model.service.HouseServiceImpl"/>
+<fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="com.ssafy.model.dao.CountryDao"/>
+<fullyQualifiedTypeName name="com.ssafy.model.dao.CountryDaoImpl"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="com.ssafy.model.service.CountryService"/>
+<fullyQualifiedTypeName name="com.ssafy.model.service.CountryServiceImpl"/>
+<fullyQualifiedTypeName name="com.ssafy.Country"/>
+<fullyQualifiedTypeName name="com.ssafy.Member"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="com.ssafy.model.dao.MemberDao"/>
+<fullyQualifiedTypeName name="com.ssafy.model.service.MemberService"/>
+<fullyQualifiedTypeName name="com.ssafy.model.service.MemberServiceImpl"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.ssafy.model.Product"/>
+<fullyQualifiedTypeName name="com.ssafy.util.DBUtil"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>
