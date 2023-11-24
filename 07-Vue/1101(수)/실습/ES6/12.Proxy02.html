@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="title"></h1>
+    <script>
+      const data = {
+        title: "제목",
+      };
+      title.innerHTML = data.title;
+
+      const proxy = new Proxy(data, {
+        set(target, key, value) {
+          title.innerHTML = value;
+          target[key] = value;
+        },
+      });
+
+      setTimeout(() => {
+        proxy.title = "수정됨";
+
+        console.log(data);
+      }, 2000);
+    </script>
+  </body>
+</html>

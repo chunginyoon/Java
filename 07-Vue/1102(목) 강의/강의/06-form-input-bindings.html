@@ -1,0 +1,48 @@
+<!-- form-input-bindings.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 한글 처리는 1번 방식으로 -->
+      <p>{{ inputText1 }}</p>
+      <input v-bind:value="inputText1" v-on:input="onInput" />
+
+      <p>{{inputText2}}</p>
+      <input v-model="inputText2" />
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const inputText1 = ref("ddd");
+          const inputText2 = ref("ddd");
+
+          const onInput = (event) => {
+            //현재 발생한 이벤트를 인자로
+            console.log("input 이벤트 발생");
+            console.log("이벤트 객체", event);
+            inputText1.value = event.target.value;
+          };
+
+          return {
+            inputText1,
+            inputText2,
+            onInput,
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

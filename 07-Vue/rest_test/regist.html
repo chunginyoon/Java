@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>책 등록</title>
+  </head>
+  <body>
+    <h1>책 등록</h1>
+
+    <form id="regist-form" action="">
+      <fieldset>
+        <label for=""><input type="text" id="title" /> 제목</label>
+        <br />
+        <label for=""><input type="text" id="author" /> 저자</label>
+        <br />
+        <label for=""><input type="number" id="price" /> 가격</label>
+        <br />
+        <label for="">
+          <textarea cols="30" rows="10" id="content"></textarea> 내용</label
+        >
+      </fieldset>
+      <button type="submit">등록</button>
+    </form>
+    <script>
+      const form = document.getElementById("regist-form");
+
+      form.onsubmit = function (e) {
+        console.log(e);
+        e.preventDefault(); //원래 form의 제출 기능 막기
+
+        // 등록 데이터
+        const book = {
+          title: title.value,
+          author: author.value,
+          price: price.value,
+          content: content.value,
+        };
+        console.log("등록 정보 : ", book);
+
+        //fetch() 등록 요청 보내고 등록 완료 시, 목록화면 이동
+        const url = "http://localhost:8080/ws/books";
+        const config = {
+          method: "post",
+          body: JSON.stringify(book),
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        };
+        fetch(url, config)
+          .then((res) => res.text())
+          .then(() => {
+            console.log("등록 성공");
+            location.href = "/list.html";
+          });
+      };
+    </script>
+  </body>
+</html>

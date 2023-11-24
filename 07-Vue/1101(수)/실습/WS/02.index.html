@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="firstApp">
+      <h1>{{first}}</h1>
+    </div>
+
+    <div id="secondApp">
+      <h1>{{second}}</h1>
+    </div>
+
+    <div id="thirdApp">
+      <h1>{{third}}</h1>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+
+      const firstApp = createApp({
+        setup() {
+          const first = ref("첫 번째 앱");
+
+          return { first };
+        },
+      });
+      firstApp.mount("#firstApp");
+
+      const secondApp = createApp({
+        setup() {
+          const second = ref("두 번째 앱");
+
+          return { second };
+        },
+      });
+      secondApp.mount("#secondApp");
+
+      const thirdApp = createApp({
+        setup() {
+          const third = ref("세 번째 앱");
+
+          return { third };
+        },
+      });
+      thirdApp.mount("#thirdApp");
+    </script>
+  </body>
+</html>

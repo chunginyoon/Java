@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>책 목록</title>
+  </head>
+  <body>
+    <h1>책 목록 화면</h1>
+
+    <table id="book-list">
+      <tr>
+        <th>책 번호</th>
+        <th>제목</th>
+        <th>저자</th>
+        <th>가격</th>
+      </tr>
+    </table>
+
+    <script>
+      const url = "http://localhost:8080/ws/books";
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("책 목록 데이터 : ", data);
+          const table = document.getElementById("book-list");
+          for (const book of data) {
+            table.innerHTML += `
+                    <tr>
+                        <td>${book.no}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.price}</td>
+                    </tr>
+                `;
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+section {
+  width: 60vw;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+/*카테고리 선택 버튼 클래스*/
+.button {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  height: 30px;
+}
+
+/*각 카테고리 버튼*/
+.button > button {
+  border: 1px solid #3b8c9a;
+  cursor: pointer;
+  cursor: hand;
+  background-color: #3b8c9a;
+  color: white;
+  padding: 5px;
+  border-radius: 2em;
+  width: 100px;
+  height: 40px;
+}
+
+/*카테고리 별로 섹션*/
+.view {
+  margin: 50px 0px;
+}
+
+.view > p {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.images {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images > div {
+  width: 20%;
+  height: 200px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.images > div:first-child {
+  margin-left: 0;
+}
+
+.images > div:last-child {
+  margin-right: 0;
+}
+
+.view > button {
+  border: 1px solid #3b8c9a;
+  cursor: pointer;
+  cursor: hand;
+  background-color: #3b8c9a;
+  color: white;
+  padding: 5px;
+  border-radius: 2em;
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
+}
